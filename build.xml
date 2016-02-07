@@ -5,11 +5,10 @@
 
     <property name="project.name" value="CS445_HW1"/>
     <property name="main_class_name" value="TestCreature"/>
-    <property name="jar_name"  value="$Parth-Joshi-HW-1"/>
+    <property name="jar_name"  value="Parth-Joshi-HW-1"/>
 
     <property name="src.dir" location="src" />
     <property name="build.dir" location="bin/classes" />
-    <property name="dist.dir" location="dist" />
     <property name="test.dir" location="test" />
     <property name="build.test.dir" location="bin/test" />
 
@@ -23,13 +22,12 @@
     <!-- Deletes the existing docs, build and dist directory-->
     <target name="clean">
         <delete dir="${build.dir}" />
-        <delete dir="${dist.dir}" />
+        <delete file="${jar_name}.jar"/>
     </target>
 
     <!-- Creates the docs, build and dist directory-->
     <target name="makedir">
         <mkdir dir="${build.dir}" />
-        <mkdir dir="${dist.dir}" />
         <mkdir dir="${build.test.dir}" />
     </target>
 
@@ -56,6 +54,11 @@
 
     <target name="main" depends="compile, junit">
         <description>Main target</description>
+        <jar jarfile="${jar_name}.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main_class_name}"/>
+            </manifest>
+        </jar>
     </target>
 
 </project>
